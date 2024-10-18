@@ -1,7 +1,7 @@
 package javaBasics;
 
 public class Calculator {
-    public int[][] XOR(int[][] A, int[][] B) {
+    private int[][] XOR(int[][] A, int[][] B) {
         int[][] C = new int[A.length][A[0].length];
 
         for (int i = 0; i < A.length; i++) {
@@ -13,7 +13,7 @@ public class Calculator {
         return C;
     }
 
-    public int calcRowsBiggestSum(int[][] C) {
+    private int calcRowsBiggestSum(int[][] C) {
         int sum = 0;
         for (int[] row : C) {
             int biggestInt = row[0];
@@ -26,6 +26,16 @@ public class Calculator {
     }
 
     public void execute(int[][] A, int[][] B) {
+        if (!isValidMatrix(A) || !isValidMatrix(B)) {
+            System.out.println("Error: One or both matrices are invalid.");
+            return;
+        }
+
+        if (A.length != B.length || A[0].length != B[0].length) {
+            System.out.println("Error: Matrices must have the same dimensions.");
+            return;
+        }
+
         int[][] C = this.XOR(A, B);
         this.printMatrix(C);
         int sumOfBiggestValues = this.calcRowsBiggestSum(C);
@@ -42,5 +52,23 @@ public class Calculator {
             System.out.println(" ]");
         }
         System.out.println("]");
+    }
+
+    private boolean isValidMatrix(int[][] matrix) {
+        if (matrix == null) {
+            return false;
+        }
+
+        if (matrix.length == 0 || matrix[0].length == 0) {
+            return false;
+        }
+
+        for (int[] row : matrix) {
+            if (row == null || row.length != matrix[0].length) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }
