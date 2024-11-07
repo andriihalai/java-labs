@@ -1,6 +1,32 @@
 package javaBasics;
 
+/**
+ * The {@code Calculator} class provides methods for performing bitwise XOR operations
+ * on two-dimensional integer arrays (matrices) and calculating the sum of the largest
+ * values in each row of the resultant matrix. It validates the matrices before processing
+ * to ensure that they are well-formed and of the same dimensions.
+ *
+ * <p>This class includes private methods for the core functionalities:
+ * <ul>
+ *   <li>Performing the XOR operation on matrices.</li>
+ *   <li>Calculating the sum of the largest values in each row.</li>
+ *   <li>Printing matrices.</li>
+ *   <li>Validating matrix dimensions and structure.</li>
+ * </ul>
+ *
+ * <p>The {@link #execute(int[][], int[][])} method is the main public method for
+ * executing these operations.
+ */
 public class Calculator {
+
+    /**
+     * Performs element-wise XOR on two matrices and returns the resulting matrix.
+     * This method assumes that the matrices have been validated to have the same dimensions.
+     *
+     * @param A the first matrix to XOR
+     * @param B the second matrix to XOR
+     * @return the resulting matrix after applying XOR element-wise
+     */
     private int[][] XOR(int[][] A, int[][] B) {
         int[][] C = new int[A.length][A[0].length];
 
@@ -13,6 +39,12 @@ public class Calculator {
         return C;
     }
 
+    /**
+     * Calculates the sum of the largest values in each row of the given matrix.
+     *
+     * @param C the matrix to calculate row-wise largest values
+     * @return the sum of the largest values in each row of {@code C}
+     */
     private int calcRowsBiggestSum(int[][] C) {
         int sum = 0;
         for (int[] row : C) {
@@ -25,6 +57,21 @@ public class Calculator {
         return sum;
     }
 
+    /**
+     * Validates and processes the input matrices by performing an XOR operation on
+     * them, printing the resultant matrix, and calculating the sum of the largest
+     * values in each row.
+     *
+     * <p>Validation checks include:
+     * <ul>
+     *   <li>Both matrices must be non-null, with non-zero rows and columns.</li>
+     *   <li>Each row must be of equal length.</li>
+     *   <li>Both matrices must have the same dimensions.</li>
+     * </ul>
+     *
+     * @param A the first matrix to process
+     * @param B the second matrix to process
+     */
     public void execute(int[][] A, int[][] B) {
         if (!isValidMatrix(A) || !isValidMatrix(B)) {
             System.out.println("Error: One or both matrices are invalid.");
@@ -42,6 +89,11 @@ public class Calculator {
         System.out.println("Sum of biggest values of each row: " + sumOfBiggestValues);
     }
 
+    /**
+     * Prints the given matrix to the console in a readable format.
+     *
+     * @param matrix the matrix to print
+     */
     private void printMatrix(int[][] matrix) {
         System.out.println("[");
         for (int[] row : matrix) {
@@ -54,6 +106,17 @@ public class Calculator {
         System.out.println("]");
     }
 
+    /**
+     * Checks if a matrix is valid. A matrix is considered valid if:
+     * <ul>
+     *   <li>It is non-null.</li>
+     *   <li>It has non-zero rows and columns.</li>
+     *   <li>All rows have the same number of columns.</li>
+     * </ul>
+     *
+     * @param matrix the matrix to validate
+     * @return {@code true} if the matrix is valid; {@code false} otherwise
+     */
     private boolean isValidMatrix(int[][] matrix) {
         if (matrix == null) {
             return false;
