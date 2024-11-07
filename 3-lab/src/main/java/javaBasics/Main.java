@@ -1,7 +1,6 @@
 package javaBasics;
 
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.Objects;
 
 public class Main {
@@ -21,16 +20,13 @@ public class Main {
                         222, 1202, 342)
         };
 
-        Arrays.sort(boats, new Comparator < SeaBoat > () {
-            @Override
-            public int compare(SeaBoat boat1, SeaBoat boat2) {
-                if (boat1.fuelCapacity > boat2.fuelCapacity) {
-                    return 1;
-                } else if (boat1.fuelCapacity < boat2.fuelCapacity) {
-                    return -1;
-                }
-                return 0;
+        Arrays.sort(boats, (boat1, boat2) -> {
+            if (boat1.fuelCapacity > boat2.fuelCapacity) {
+                return 1;
+            } else if (boat1.fuelCapacity < boat2.fuelCapacity) {
+                return -1;
             }
+            return 0;
         });
 
         System.out.println("Array sorted by fuelCapacity, ascending order:");
@@ -39,16 +35,13 @@ public class Main {
             System.out.println();
         }
 
-        Arrays.sort(boats, new Comparator < SeaBoat > () {
-            @Override
-            public int compare(SeaBoat boat1, SeaBoat boat2) {
-                if (boat1.weight > boat2.weight) {
-                    return -1;
-                } else if (boat1.weight < boat2.weight) {
-                    return 1;
-                }
-                return 0;
+        Arrays.sort(boats, (boat1, boat2) -> {
+            if (boat1.weight > boat2.weight) {
+                return -1;
+            } else if (boat1.weight < boat2.weight) {
+                return 1;
             }
+            return 0;
         });
         System.out.println("Array sorted by weight, descending order:");
         for (SeaBoat seaBoat: boats) {
