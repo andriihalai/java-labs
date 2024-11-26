@@ -136,6 +136,7 @@ public class VegetablesSet implements Set<Vegetable> {
      * @return an array containing all elements in the set.
      */
     @Override
+    @SuppressWarnings("unchecked")
     public <T> T[] toArray(T[] a) {
         if (a.length < size) {
             return (T[]) Arrays.copyOf(vegetables, size, a.getClass());
